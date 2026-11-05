@@ -37,7 +37,7 @@ window.APPS = [
     bg: "#120f1f", ink: "#efe9ff", accent: "#b48cff",
     device: "landscape", fit: "cover",
     icon: "assets/shadow-duel/icone.png",
-    shots: ["menu", "duelo", "fase1", "choque", "especial", "fase3", "fase4"].map(n => `assets/shadow-duel/${n}.jpg`),
+    shots: ["assets/shadow-duel/duelo.jpg"],
     tagline: "Tharion contra Voyna, agora em 3D.",
     desc: "Remake do Shadow Duel, jogo de luta por turnos feito em Java no técnico. A cada turno você escolhe entre ataque, defesa, cura e golpe especial, em 4 fases, cada uma com cenário e luz próprios.",
     features: ["4 fases com luz própria", "Ataque, defesa, cura e especial", "Lutadores em 3D", "Remake do original em Java"],
