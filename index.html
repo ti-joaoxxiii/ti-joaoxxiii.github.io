@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projetos desenvolvidos — Técnico em Informática · E.E.E.B. João XXIII</title>
+  <meta name="description" content="Apps e jogos desenvolvidos no curso Técnico em Informática da Escola Estadual de Educação Básica João XXIII. Baixe, instale e jogue.">
+  <meta property="og:title" content="Projetos desenvolvidos — Técnico em Informática João XXIII">
+  <meta property="og:description" content="Apps e jogos desenvolvidos no curso Técnico em Informática da E.E.E.B. João XXIII.">
+  <meta property="og:image" content="assets/shadow-duel/duelo.jpg">
+  <meta name="theme-color" content="#0c0c0c">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a href="#top" class="nav__brand">
+      <img src="assets/logo-ti.png" alt="">
+      <span>Técnico em Informática</span>
+    </a>
+    <div class="nav__end">
+      <a href="#projetos">Projetos</a>
+      <a href="#creditos">Créditos</a>
+      <a class="ig" id="navIg" href="#" target="_blank" rel="noopener">Instagram</a>
+      <a class="ig" href="https://github.com/ti-joaoxxiii" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <span class="nav__progress" id="progress"></span>
+  </nav>
+
+  <header class="hero zone" id="top" data-bg="#0c0c0c" data-ink="#f1eee8">
+    <div class="hero__logos r">
+      <img src="assets/logo-ti.png" alt="Logo do Técnico em Informática">
+      <img src="assets/logo-escola.png" alt="Logo da E.E.E.B. João XXIII">
+      <p><b>Técnico em Informática</b><br>E.E.E.B. João XXIII</p>
+    </div>
+    <h1 class="hero__title">
+      <span class="mask"><span>Projetos</span></span>
+      <span class="mask"><span>desenvolvidos</span></span>
+    </h1>
+    <div class="hero__bottom">
+      <p class="hero__lead r">Apps e jogos criados no curso Técnico em Informática da Escola Estadual de Educação Básica João XXIII. Escolha um, baixe e instale.</p>
+      <ol class="shelf r" id="shelf"></ol>
+    </div>
+  </header>
+
+  <main id="projetos"></main>
+
+  <section class="credits-sec zone" id="creditos" data-bg="#0c0c0c" data-ink="#f1eee8">
+    <div class="sec-head r"><span>Créditos</span><span>Quem fez cada projeto</span></div>
+    <div class="people" id="people"></div>
+  </section>
+
+  <section class="install zone" id="instalar" data-bg="#0c0c0c" data-ink="#f1eee8">
+    <div class="sec-head r"><span>Como instalar</span><span>Android</span></div>
+    <ol class="steps r">
+      <li>Toque em <b>Baixar APK</b> no projeto que quiser.</li>
+      <li>Abra o arquivo baixado pela notificação ou pela pasta Downloads.</li>
+      <li>Se o Android pedir, ative <b>Permitir desta fonte</b>.</li>
+      <li>Toque em <b>Instalar</b>. Se o Play Protect avisar, escolha <b>Instalar mesmo assim</b>.</li>
+    </ol>
+  </section>
+
+  <footer class="footer zone" data-bg="#0c0c0c" data-ink="#f1eee8">
+    <div class="footer__top r">
+      <div class="footer__logos">
+        <img src="assets/logo-ti.png" alt="">
+        <img src="assets/logo-escola.png" alt="">
+      </div>
+      <p class="footer__claim">Feito no Técnico em Informática<br>da E.E.E.B. João XXIII.</p>
+    </div>
+    <div class="footer__row">
+      <div class="footer__links" id="footLinks"></div>
+      <p>Site organizado por <a id="footOrg" href="#" target="_blank" rel="noopener">Murilo Vieira</a> · <span id="year"></span></p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden><img alt=""><button aria-label="Fechar">Fechar</button></div>
+
+  <script src="apps.js"></script>
+  <script src="art.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
