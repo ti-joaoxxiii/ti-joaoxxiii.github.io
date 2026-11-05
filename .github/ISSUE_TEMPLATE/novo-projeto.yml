@@ -1,0 +1,97 @@
+name: Enviar projeto
+description: Mande seu app, jogo ou ferramenta feito no técnico para aparecer no site.
+title: "Projeto: "
+labels: ["novo projeto"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Preencha o que souber. Depois que um professor ou administrador aprovar, o projeto entra no site **apps.athomon.com**.
+        Dica: para os prints, é só **arrastar as imagens** para o campo de prints.
+  - type: input
+    id: nome
+    attributes:
+      label: Nome do projeto
+      placeholder: "Ex.: Aventura do Moai"
+    validations:
+      required: true
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: O que é
+      options:
+        - Jogo
+        - App
+        - Ferramenta
+        - Site
+    validations:
+      required: true
+  - type: dropdown
+    id: plataforma
+    attributes:
+      label: Onde roda
+      options:
+        - Android, celular em pé
+        - Android, celular deitado
+        - Windows
+        - Navegador
+    validations:
+      required: true
+  - type: input
+    id: frase
+    attributes:
+      label: Uma frase sobre o projeto
+      placeholder: "Ex.: O último moai atravessa Rapa Nui atrás dos seus olhos."
+    validations:
+      required: true
+  - type: textarea
+    id: descricao
+    attributes:
+      label: Descrição curta
+      description: 2 ou 3 frases. O que é, como funciona, o que tem de legal.
+    validations:
+      required: true
+  - type: input
+    id: autores
+    attributes:
+      label: Quem desenvolveu
+      description: Nome completo. Se tiver GitHub, coloque o @ depois do nome.
+      placeholder: "Ex.: Igor Augusto Gamarra (@Igor-maker-1)"
+    validations:
+      required: true
+  - type: input
+    id: parceria
+    attributes:
+      label: Em parceria com (opcional)
+      placeholder: "Ex.: Murilo Vieira (@MuriloDPV)"
+  - type: input
+    id: tecnologias
+    attributes:
+      label: Feito com
+      placeholder: "Ex.: Java, Android Studio"
+  - type: input
+    id: codigo
+    attributes:
+      label: Link do código (opcional)
+      placeholder: "https://github.com/ti-joaoxxiii/..."
+  - type: input
+    id: download
+    attributes:
+      label: Link do APK ou download (opcional)
+      description: Pode ser um Release do GitHub ou um link do Google Drive.
+  - type: textarea
+    id: prints
+    attributes:
+      label: Prints
+      description: Arraste aqui de 1 a 6 imagens do projeto funcionando (e o ícone, se tiver).
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmacoes
+    attributes:
+      label: Confirmações
+      options:
+        - label: Todos que fizeram o projeto concordam em publicar.
+          required: true
+        - label: O projeto não tem senhas, chaves ou dados pessoais de outras pessoas.
+          required: true

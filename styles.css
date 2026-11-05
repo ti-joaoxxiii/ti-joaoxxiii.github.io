@@ -297,3 +297,6 @@ span.btn{cursor:default}
 .install .steps li{padding-left:28px}
 @media (max-width:900px){.hero__bottom{grid-template-columns:1fr}}
 @media (max-width:600px){.hero__title{font-size:12.6vw}}
+
+.send{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:8vh;padding-top:28px;border-top:1px solid var(--rule)}
+.send p{font-size:clamp(24px,2.6vw,38px);font-weight:600;letter-spacing:-.03em}

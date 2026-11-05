@@ -25,6 +25,10 @@ Site estático em HTML, CSS e JavaScript, sem build. Publicado pelo GitHub Pages
 
 ## Adicionar um projeto
 
+**Jeito fácil:** preencha o formulário [Enviar projeto](https://github.com/ti-joaoxxiii/ti-joaoxxiii.github.io/issues/new?template=novo-projeto.yml). Um administrador aprova e o projeto entra no site.
+
+**Direto no código:**
+
 1. Coloque os prints em `assets/<id-do-projeto>/`.
 2. Adicione um bloco em `window.APPS` dentro de `apps.js` (copie um dos existentes).
 3. Em `authors`, use `role: "autor"` para quem desenvolveu e `role: "parceria"` para quem ajudou. Novas pessoas entram em `window.PEOPLE`.
