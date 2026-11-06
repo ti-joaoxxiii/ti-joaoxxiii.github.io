@@ -23,7 +23,7 @@ window.SITE = {
 window.PEOPLE = {
   murilo:   { name: "Murilo Vieira", gh: "https://github.com/MuriloDPV" },
   igor:     { name: "Igor Augusto Gamarra", gh: "https://github.com/Igor-maker-1" },
-  gabriel:  { name: "Gabriel Zatta" },
+  gabriel:  { name: "Gabriel Zatta", gh: "https://github.com/Gabrielelzatta" },
   spagnoli: { name: "Murilo Spagnoli" },
   mauri:    { name: "Mauri", gh: "https://github.com/MauriKlein" }
 };
