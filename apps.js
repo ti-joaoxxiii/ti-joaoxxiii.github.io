@@ -74,22 +74,6 @@ window.APPS = [
     links: [{ label: "Código", url: "https://github.com/MuriloDPV/ENEMigo" }]
   },
   {
-    id: "chessdiary",
-    name: "ChessDiary",
-    kind: "Agenda gamificada",
-    bg: "#ece6da", ink: "#151412", accent: "#c9a54c",
-    device: "portrait", fit: "cover",
-    art: "chess", screen: "#141311",
-    shots: [],
-    tagline: "Sua agenda vira uma partida de xadrez.",
-    desc: "Agenda e diário pessoal 100% offline com visual de xadrez. Cada compromisso cumprido vale pontos, e o nível sobe peça por peça, do peão ao rei, mantendo a sequência de dias.",
-    features: ["Funciona sem internet", "Níveis por peça, pontos e conquistas", "Sequência diária", "Tudo salvo no aparelho"],
-    tech: ["Java", "XML Views", "Room", "MVVM"],
-    authors: [{ who: "igor", role: "autor" }, { who: "murilo", role: "parceria" }],
-    download: null,
-    links: []
-  },
-  {
     id: "boss-rush",
     name: "Boss Rush",
     kind: "Jogo de batalha contra chefes",

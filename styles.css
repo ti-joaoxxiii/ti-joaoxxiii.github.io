@@ -303,3 +303,6 @@ span.btn{cursor:default}
 
 .lightbox[hidden]{display:none}
 .lightbox:not(.on){pointer-events:none}
+
+.shelf{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+@media (max-width:900px){.shelf{display:flex}}
