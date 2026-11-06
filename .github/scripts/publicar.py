@@ -204,6 +204,10 @@ def main():
             print("REMOVIDO")
         return
 
+    if chave not in dados and "publicado" in LABELS:
+        print("Publicado à mão antes da automação; nada a fazer.")
+        return
+
     c = ler_campos(ISSUE.get("body"))
     if not c.get("nome"):
         comentar("Não consegui ler este pedido. Use o formulário **Enviar projeto** para mandar o projeto.")

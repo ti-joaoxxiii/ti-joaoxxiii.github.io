@@ -1,4 +1,2 @@
-downloads/
-*.apk
-*.aab
-*.zip
+__pycache__/
+*.pyc
