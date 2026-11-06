@@ -27,16 +27,20 @@ jobs:
       REPO: ${{ github.repository }}
       NUM: ${{ github.event.issue.number }}
       ASSOC: ${{ github.event.issue.author_association }}
+      AUTOR: ${{ github.event.issue.user.login }}
       ACTION: ${{ github.event.action }}
       LABEL: ${{ github.event.label.name }}
       HAS_APROVADO: ${{ contains(github.event.issue.labels.*.name, 'aprovado') }}
       HAS_REMOVER: ${{ contains(github.event.issue.labels.*.name, 'remover') }}
     steps:
+      - uses: actions/checkout@v4
+
       - name: Decidir se publica
         id: decide
         run: |
           ok=false
-          case "$ASSOC" in OWNER|MEMBER|COLLABORATOR) ok=true ;; esac
+          case "$ASSOC" in OWNER|MEMBER) ok=true ;; esac
+          grep -v '^#' data/membros.txt | tr -d '\r' | grep -qixF -- "$AUTOR" && ok=true
           [ "$HAS_APROVADO" = "true" ] && ok=true
           [ "$HAS_REMOVER" = "true" ] && ok=true
           # rótulos que não mudam nada não disparam publicação
@@ -47,10 +51,7 @@ jobs:
       - name: Avisar que está aguardando aprovação
         if: steps.decide.outputs.ok == 'false' && github.event.action == 'opened'
         run: |
-          gh issue comment "$NUM" -R "$REPO" --body "Recebido! Como você ainda não é membro da organização, um administrador (Murilo ou o professor Mauri) precisa aprovar. Assim que o rótulo **aprovado** for colocado, o projeto entra no site sozinho."
-
-      - uses: actions/checkout@v4
-        if: steps.decide.outputs.ok == 'true'
+          gh issue comment "$NUM" -R "$REPO" --body "Recebido! Como você ainda não está na lista de membros que publicam direto, um administrador (Murilo ou o professor Mauri) precisa aprovar. Assim que o rótulo **aprovado** for colocado, o projeto entra no site sozinho."
 
       - uses: actions/setup-python@v5
         if: steps.decide.outputs.ok == 'true'
