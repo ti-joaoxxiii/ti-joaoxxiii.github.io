@@ -35,4 +35,18 @@ Site estático em HTML, CSS e JavaScript, sem build. Publicado pelo GitHub Pages
 4. O APK vai em **Releases** do repositório do projeto, e o link em `download`.
 5. Faça commit e push: o site atualiza sozinho em cerca de 1 minuto.
 
+## Publicação automática
+
+Quando alguém preenche o formulário **Enviar projeto**, um robô (GitHub Actions) monta o projeto e publica no site sozinho:
+
+1. Lê o pedido, baixa os prints (se vier vídeo, tira 3 quadros dele) e cria o ícone.
+2. Quem está em [`data/membros.txt`](data/membros.txt) publica na hora. Quem não está espera um administrador colocar o rótulo **aprovado** no pedido.
+3. Em cerca de 1 minuto o projeto aparece no site, e o robô responde no pedido com o link.
+
+- **Corrigir algo:** é só editar o pedido; o robô atualiza o site.
+- **Tirar do site:** coloque o rótulo **remover** no pedido.
+- **Novo membro da organização:** adicione o usuário dele em `data/membros.txt` para ele publicar sem aprovação.
+
+Os projetos enviados ficam em `projetos-enviados.js` e `assets/enviados/` (gerados pelo robô: não edite à mão).
+
 <p align="center"><sub>Feito no Técnico em Informática da E.E.E.B. João XXIII</sub></p>
