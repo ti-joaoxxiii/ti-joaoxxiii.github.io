@@ -1,0 +1,94 @@
+name: Publicar projeto no site
+
+# Quando alguém envia (ou edita) um pedido pelo formulário "Enviar projeto":
+# - membros da organização: publica direto no site
+# - quem é de fora: espera um administrador colocar o rótulo "aprovado"
+# - rótulo "remover": tira o projeto do site
+
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+
+concurrency:
+  group: publicar-projeto
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    if: startsWith(github.event.issue.title, 'Projeto:') || contains(github.event.issue.labels.*.name, 'novo projeto')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPO: ${{ github.repository }}
+      NUM: ${{ github.event.issue.number }}
+      ASSOC: ${{ github.event.issue.author_association }}
+      ACTION: ${{ github.event.action }}
+      LABEL: ${{ github.event.label.name }}
+      HAS_APROVADO: ${{ contains(github.event.issue.labels.*.name, 'aprovado') }}
+      HAS_REMOVER: ${{ contains(github.event.issue.labels.*.name, 'remover') }}
+    steps:
+      - name: Decidir se publica
+        id: decide
+        run: |
+          ok=false
+          case "$ASSOC" in OWNER|MEMBER|COLLABORATOR) ok=true ;; esac
+          [ "$HAS_APROVADO" = "true" ] && ok=true
+          [ "$HAS_REMOVER" = "true" ] && ok=true
+          # rótulos que não mudam nada não disparam publicação
+          if [ "$ACTION" = "labeled" ] && [ "$LABEL" != "aprovado" ] && [ "$LABEL" != "remover" ] && [ "$LABEL" != "novo projeto" ]; then ok=skip; fi
+          echo "ok=$ok" >> "$GITHUB_OUTPUT"
+          gh issue edit "$NUM" -R "$REPO" --add-label "novo projeto" || true
+
+      - name: Avisar que está aguardando aprovação
+        if: steps.decide.outputs.ok == 'false' && github.event.action == 'opened'
+        run: |
+          gh issue comment "$NUM" -R "$REPO" --body "Recebido! Como você ainda não é membro da organização, um administrador (Murilo ou o professor Mauri) precisa aprovar. Assim que o rótulo **aprovado** for colocado, o projeto entra no site sozinho."
+
+      - uses: actions/checkout@v4
+        if: steps.decide.outputs.ok == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.decide.outputs.ok == 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Gerar o projeto
+        id: gerar
+        if: steps.decide.outputs.ok == 'true'
+        env:
+          ISSUE_JSON: ${{ toJson(github.event.issue) }}
+        run: |
+          pip install --quiet pillow
+          python .github/scripts/publicar.py
+
+      - name: Salvar no site
+        id: salvar
+        if: steps.decide.outputs.ok == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/enviados data projetos-enviados.js
+          if git diff --cached --quiet; then echo "mudou=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git commit -m "Projeto enviado pelo pedido #$NUM"
+          git push
+          echo "mudou=true" >> "$GITHUB_OUTPUT"
+          gh api -X POST "repos/$REPO/pages/builds" >/dev/null || true
+
+      - name: Responder no pedido
+        if: steps.decide.outputs.ok == 'true' && steps.salvar.outputs.mudou == 'true'
+        env:
+          PID: ${{ steps.gerar.outputs.id }}
+        run: |
+          if [ "$HAS_REMOVER" = "true" ]; then
+            gh issue comment "$NUM" -R "$REPO" --body "Projeto removido do site."
+            gh issue close "$NUM" -R "$REPO" || true
+          else
+            gh issue comment "$NUM" -R "$REPO" --body "Publicado! Em cerca de 1 minuto aparece em https://apps.athomon.com/#$PID — para mudar algo, é só editar este pedido."
+            gh issue edit "$NUM" -R "$REPO" --add-label "publicado" || true
+            gh issue close "$NUM" -R "$REPO" || true
+          fi
