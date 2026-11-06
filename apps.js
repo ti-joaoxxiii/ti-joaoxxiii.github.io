@@ -25,7 +25,8 @@ window.PEOPLE = {
   igor:     { name: "Igor Augusto Gamarra", gh: "https://github.com/Igor-maker-1" },
   gabriel:  { name: "Gabriel Zatta", gh: "https://github.com/Gabrielelzatta" },
   spagnoli: { name: "Murilo Spagnoli" },
-  mauri:    { name: "Mauri", gh: "https://github.com/MauriKlein" }
+  mauri:    { name: "Mauri", gh: "https://github.com/MauriKlein" },
+  leonardo: { name: "Leonardo Bohn Heinzmann", gh: "https://github.com/leonardoGFBPA67" }
 };
 
 window.APPS = [
@@ -111,5 +112,21 @@ window.APPS = [
       { label: "Jogar no navegador", url: "jogar/aventura-do-moai/", internal: true },
       { label: "Código", url: "https://github.com/MuriloDPV/AventuraDoMoai" }
     ]
+  },
+  {
+    id: "wildlife-kingdon",
+    name: "Wildlife Kingdon",
+    kind: "Jogo idle de construção",
+    bg: "#1b4d24", ink: "#eef7ea", accent: "#f9c74f",
+    device: "portrait", fit: "cover", screen: "#2e7d32",
+    icon: "assets/wildlife-kingdon/icone.png",
+    shots: ["floresta", "ilha-tropical", "regiao-polar"].map(n => `assets/wildlife-kingdon/${n}.webp`),
+    tagline: "Um reino de animais que cresce até quando você está fora.",
+    desc: "Jogo idle de construção: você desenvolve habitats na Floresta, na Ilha Tropical e na Região Polar, coleciona animais e vê o mundo evoluir. A produção continua com o jogo fechado e é coletada quando você volta.",
+    features: ["3 regiões para desenvolver", "Coleção de animais", "Missões e melhorias", "Eventos aleatórios com bônus"],
+    tech: ["Java", "Android Studio", "Room"],
+    authors: [{ who: "leonardo", role: "autor" }],
+    download: null,
+    links: []
   }
 ];
