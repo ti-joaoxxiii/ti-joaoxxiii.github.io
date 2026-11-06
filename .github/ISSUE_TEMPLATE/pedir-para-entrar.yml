@@ -1,0 +1,33 @@
+name: Pedir para entrar na organização
+description: Indique um colega (ou você mesmo) para entrar na organização do Técnico. Um administrador aprova.
+title: "Entrada: "
+labels: ["pedido de entrada"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Os administradores (Murilo ou o professor Mauri) recebem o pedido e mandam o convite. O convite chega por e-mail e também aparece em github.com/ti-joaoxxiii.
+  - type: input
+    id: nome
+    attributes:
+      label: Nome completo de quem vai entrar
+    validations:
+      required: true
+  - type: input
+    id: usuario
+    attributes:
+      label: Usuário do GitHub
+      description: Quem não tem conta cria grátis em github.com/signup.
+      placeholder: "Ex.: Igor-maker-1"
+    validations:
+      required: true
+  - type: input
+    id: turma
+    attributes:
+      label: Turma ou ano
+      placeholder: "Ex.: 3º ano"
+  - type: input
+    id: indicado
+    attributes:
+      label: Quem indicou (opcional)
+      placeholder: "Seu nome ou @usuário"
